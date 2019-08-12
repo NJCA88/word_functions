@@ -31,7 +31,6 @@ This will install the necessary dependencies to run the site.  At this point you
 can launch the site by running:
 
 `bundle exec ruby site.rb`
-
 The site should tell you that it started successfully and let you know that it
 is running on `localhost:4567`.  Go ahead and navigate your browser to that
 location to see it.

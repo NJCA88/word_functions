@@ -36,10 +36,11 @@ end
 
 
   class Node
-    attr_accessor :keys, :end
-    def initialize
+    attr_accessor :keys, :val,  :end
+    def initialize(val = nil)
       self.keys = {}
       self.end = false
+      self.val = val
     end
     def set_end
       self.end = true
@@ -61,7 +62,7 @@ end
         node.set_end
         return
       elsif !node.keys[input[0]]
-        node.keys[input[0]] = Node.new()
+        node.keys[input[0]] = Node.new(input[0])
         return self.add(input[1..-1], node.keys[input[0]])
       else
         return self.add(input[1..-1], node.keys[input[0]])
