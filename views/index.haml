@@ -1,0 +1,35 @@
+!!!
+%html
+  %head
+    %title Lexicali
+    %meta{'name' => 'description', :content => 'Lexicon'}
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html'}
+    %meta{'charset' => 'UTF-8'}
+    %script{:src => '/jquery.min.js'}
+    %script{:src => "/main.js?z=#{Time.now.to_i}"}
+    %link{:href => "/main.css?z=#{Time.now.to_i}", :type => 'text/css', :rel => 'stylesheet'}
+  %body
+    %div
+      %h1 Anagrams
+      %label
+        Start Word:
+      %input#anagram-word
+      %button#anagram-link{href: '#'}
+        Generate Anagrams
+    %div
+      %h1 Prefixes
+      %label
+        Start Word:
+      %input#prefix
+      %button#prefix-link{href: '#'}
+        Find Prefixes
+    %div
+      %h1 Word Ladder
+      %label
+        Start Word:
+      %input#start-word
+      %label
+        End Word:
+      %input#end-word
+      %button#word-ladder{href: '#'}
+        Build Word Ladder

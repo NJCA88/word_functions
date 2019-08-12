@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %title Lexicali
+    %meta{'name' => 'description', :content => 'Lexicon'}
+    %meta{'http-equiv' => 'Content-Type', :content => 'text/html'}
+    %meta{'charset' => 'UTF-8'}
+    %script{:src => '/jquery.min.js'}
+    %link{:href => '/main.css', :type => 'text/css', :rel => 'stylesheet'}
+  %body
+    %div
+      %ul
+        - list.each do |word|
+          %li
+            = word
+    %div
+      %a{href: url('/')}
+        Back
