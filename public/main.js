@@ -4,6 +4,7 @@ function anagrams(event) {
   return false;
 }
 
+
 function prefixes(event) {
   word = $('#prefix').val();
   window.location = '/prefixed/' + word;
@@ -21,6 +22,10 @@ function init() {
   $('#anagram-link').on('click', anagrams);
   $('#prefix-link').on('click', prefixes);
   $('#word-ladder').on('click', ladder);
+}
+
+function getAnagrams(event) {
+
 }
 
 $(init);

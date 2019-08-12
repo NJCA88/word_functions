@@ -13,7 +13,7 @@ class SpecialLexicon < Lexicon
   # Generates an array of all the words that have the given word as a prefix
   def get_prefixed_words(prefix)
     # FILL ME IN
-    return []
+    return [@trie.is_word(prefix)]
   end
 
 
