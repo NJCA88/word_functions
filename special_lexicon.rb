@@ -6,7 +6,7 @@ class SpecialLexicon < Lexicon
   def get_anagrams(word)
     # FILL ME IN
     sorted_word = word.chars.sort.join
-    return @sorted_hash[sorted_word]
+    return @sorted_hash[sorted_word].uniq
   end
 
 
