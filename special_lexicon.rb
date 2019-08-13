@@ -14,6 +14,7 @@ class SpecialLexicon < Lexicon
   def get_prefixed_words(prefix)
     # FILL ME IN
     # return [@trie.is_word(prefix)]
+    prefix_copy = prefix[0...-1]
     answer = []
     current_node = @trie.root
     # return ['alphabet']
@@ -27,12 +28,24 @@ class SpecialLexicon < Lexicon
         return "Sorry, we can't find any words with that prefix"
       end
     end
-    #we now have the final letter of the prefix as the current node, I hope.
+    #we now have the final letter of the prefix as the current node.
     print "keys are: ", current_node.keys
-    return [current_node.val]
 
+    # dfs current_node.keys, calling it on current_node without the final letter of the prefix
+    answer = dfs(current_node, prefix_copy)
+    return answer.flatten
+  end
 
-    
+  def dfs(node, prefix)
+    prefix = prefix + node.val
+    if node.keys.length == 0
+      return [prefix]
+    end
+
+    return node.keys.map {|key, value|
+    dfs(node.keys[key], prefix)
+   }
+
   end
 
 
