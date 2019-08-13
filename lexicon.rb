@@ -18,7 +18,7 @@ class Lexicon
       if @sorted_hash[sorted_string]
         @sorted_hash[sorted_string].push(line)
       else
-        @sorted_hash[sorted_string] = [sorted_string]
+        @sorted_hash[sorted_string] = [line]
       end
 
       @trie.add(line)  
