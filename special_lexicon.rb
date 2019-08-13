@@ -24,7 +24,7 @@ class SpecialLexicon < Lexicon
       if node
         current_node = node
       else
-        return "Sorry, we can't find any words with that prefix"
+        return ["Sorry, we can't find any words with that prefix"]
       end
     end
     #we now have the final letter of the prefix as the current node.
@@ -40,13 +40,11 @@ class SpecialLexicon < Lexicon
   end
 
   def dfs(node, prefix)
-    # currenly missing words where it is a valid word, but can add letters to change it to anoter word
     prefix = prefix + node.val
     if node.keys.length == 0
       return [prefix]
     end
 
-    # node.keys.map {|key, value|
     return node.keys.map do  |key, value|
       if (node.keys[key].end && node.keys[key].keys.length > 0)
         #  if we are currently looking at a word that also has children

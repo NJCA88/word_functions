@@ -22,10 +22,28 @@ function init() {
   $('#anagram-link').on('click', anagrams);
   $('#prefix-link').on('click', prefixes);
   $('#word-ladder').on('click', ladder);
+  $('#anagram-btn').on('click', betterAnagrams);
 }
 
-function getAnagrams(event) {
+function betterAnagrams(event){
+  // alert('thing happening')
+  console.log('here we go')
+  word = $('#anagram-chars').val();
+  
+  $.ajax({
+    url: "/betteranagrams/" + word, 
+    success: function (result) {
+      console.log('success', result)
+      // $("#div1").html(result);
+      // $('#results').remove();
+      $('#results').html(result);
 
+    },
+    error: function(err){
+      console.log('sadness')
+    }
+  });
+  console.log('done')
 }
 
 $(init);
