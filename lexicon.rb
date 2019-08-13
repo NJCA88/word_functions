@@ -6,6 +6,7 @@ class Lexicon
     # A hash containing all the words as keys
     @hash = {}
     @sorted_hash={}
+    @sizes_hash = {}
     @trie = Trie.new
     
 
@@ -20,11 +21,17 @@ class Lexicon
       else
         @sorted_hash[sorted_string] = [line]
       end
+      if @sizes_hash[line.length]
+        @sizes_hash[line.length].push(line)
+      else
+        @sizes_hash[line.length] = [line]
+      end
 
       @trie.add(line)  
          
     end
     file.close
+
   end
 
   # Returns true if the given word is in the lexicon
