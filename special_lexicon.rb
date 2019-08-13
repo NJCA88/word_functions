@@ -1,4 +1,5 @@
 require './lexicon'
+require 'byebug'
 
 class SpecialLexicon < Lexicon
 
@@ -12,12 +13,10 @@ class SpecialLexicon < Lexicon
 
   # Generates an array of all the words that have the given word as a prefix
   def get_prefixed_words(prefix)
-    # FILL ME IN
-    # return [@trie.is_word(prefix)]
+
     prefix_copy = prefix[0...-1]
     answer = []
     current_node = @trie.root
-    # return ['alphabet']
 
     while prefix.length > 0
       node = current_node.keys[prefix[0]]
@@ -29,22 +28,34 @@ class SpecialLexicon < Lexicon
       end
     end
     #we now have the final letter of the prefix as the current node.
-    print "keys are: ", current_node.keys
+    # print "keys are: ", current_node.keys
 
-    # dfs current_node.keys, calling it on current_node without the final letter of the prefix
     answer = dfs(current_node, prefix_copy)
+    if @trie.is_word(prefix_copy + current_node.val)
+      answer.push(prefix_copy + current_node.val)
+    else
+      p prefix_copy + current_node.val
+    end
     return answer.flatten
   end
 
   def dfs(node, prefix)
+    # currenly missing words where it is a valid word, but can add letters to change it to anoter word
     prefix = prefix + node.val
     if node.keys.length == 0
       return [prefix]
     end
 
-    return node.keys.map {|key, value|
-    dfs(node.keys[key], prefix)
-   }
+    # node.keys.map {|key, value|
+    return node.keys.map do  |key, value|
+      if (node.keys[key].end && node.keys[key].keys.length > 0)
+        #  if we are currently looking at a word that also has children
+        #   add the current word we're looking at as well as the DFS
+          dfs(node.keys[key], prefix).push(prefix + node.keys[key].val)
+      else 
+        dfs(node.keys[key], prefix)
+      end
+    end
 
   end
 
