@@ -97,10 +97,7 @@ class SpecialLexicon < Lexicon
         visited.add(neighbor)
         queue.push(new_entry)
       end
-    end
-
-
-    
+    end    
     return ["Sorry, we couldn't find any path!  We need to learn more words... :-("]
   end
 

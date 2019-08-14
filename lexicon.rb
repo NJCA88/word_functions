@@ -19,7 +19,6 @@ class Lexicon
     @edges_hash = {}
     @trie = Trie.new
     
-
     file = File.new('words.txt', 'r')
     while (line = file.gets)
       line.strip!.downcase!

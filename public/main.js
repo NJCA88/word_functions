@@ -26,7 +26,6 @@ function betterAnagrams(event){
   $.ajax({
     url: "/betteranagrams/" + word, 
     success: function (result) {
-
       result = JSON.parse(result)
       let mappedResult = result.map(el => {
         return (
@@ -35,7 +34,6 @@ function betterAnagrams(event){
       })
       $('#results').html(mappedResult);
       $('#results-subheading').html("All anagrams of: " + word)
-
     },
     error: function(err){
     }
@@ -49,7 +47,6 @@ function betterPrefixes(event){
     $('#results-subheading').html("Prefixed Words")
     return
   }
-  
   $.ajax({
     url: "/betterprefixes/" + prefix, 
     success: function (result) {
@@ -73,10 +70,8 @@ function betterLadder(event) {
   if (startWord.length === 0 || endWord.length === 0) {
     $('#results').html("We need 2 words to find a path ");
     $('#results-subheading').html("Word Ladder")
-
     return
   }
-
   $.ajax({
     url: "/betterLadder/" + startWord + '/' + endWord,
     success: function (result) {
