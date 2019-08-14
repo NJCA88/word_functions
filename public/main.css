@@ -1,5 +1,5 @@
 body {
-  background-color: #02a4ef;
+  background-color: #02a4ef94;
   font-family: roboto;
   padding-left: 25px;
 }
@@ -26,8 +26,10 @@ button:hover{
 h1{
   font-weight:400
 }
+h2*{
+  font-size:20px;
+}
 p{
   padding-top: 0px;
   margin: 5px
-  /* background-color:red; */
 }

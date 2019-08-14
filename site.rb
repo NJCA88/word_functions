@@ -39,3 +39,8 @@ get '/word_ladder/:start/:end' do
   list = settings.lexicon.get_word_ladder(params[:start], params[:end])
   haml :output, :locals => {:list => list}
 end
+get '/betterLadder/:start/:end' do
+  list = settings.lexicon.get_word_ladder(params[:start], params[:end])
+  # haml :output, :locals => {:list => list}
+  return list.to_json
+end

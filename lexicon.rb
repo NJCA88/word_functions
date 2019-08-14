@@ -35,14 +35,10 @@ class Lexicon
     file.close
 
 
-    counter = 0
-    # @hash.keys.each do |word|
-    #   get_edges(word)
-    #   counter +=1
-    #   if counter % 5000 === 0
-    #     p "count: ", counter
-    #   end
-    # end
+    @hash.keys.each do |word|
+      get_edges(word)
+
+    end
 
   end
   def get_edges(word)

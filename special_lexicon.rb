@@ -63,12 +63,12 @@ class SpecialLexicon < Lexicon
   def get_word_ladder(start_word, end_word)
     # FILL ME IN
     # BFS from the starting word with a queue or [current_word, path]
-    start_word = start_word.downcase
-    end_word = end_word.downcase
-    return ["Sorry, " + end_word + " isn't in our dictionary!"]  if !@hash[end_word]
-    return ["Sorry, " + start_word + " isn't in our dictionary!"] if !@hash[start_word] 
-    return ["Sorry, we need both words to be the same length"] if start_word.length != end_word.length
-
+      return ["Sorry, " + end_word + " isn't in our dictionary!"]  if !@hash[end_word]
+      return ["Sorry, " + start_word + " isn't in our dictionary!"] if !@hash[start_word] 
+      return ["Sorry, we need both words to be the same length"] if start_word.length != end_word.length
+      
+      start_word = start_word.downcase
+      end_word = end_word.downcase
     queue = [[start_word, [start_word]]]
     while (queue.length > 0)
       current_data = queue.shift
