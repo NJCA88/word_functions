@@ -2,14 +2,14 @@ class Lexicon
 
   def initialize
     # The full array of all words
-    @array = []
+    # @array = []
     # A hash containing all the words as keys
     @hash = {}
     @sorted_hash={}
-    @sizes_hash = {}
+    # @sizes_hash = {}
     @edges_hash = {}
     @trie = Trie.new
-    @sizes_graphs = {}
+    # @sizes_graphs = {}
     
 
     file = File.new('words.txt', 'r')
@@ -23,21 +23,27 @@ class Lexicon
       else
         @sorted_hash[sorted_string] = [line]
       end
-      if @sizes_hash[line.length]
-        @sizes_hash[line.length].push(line)
-      else
-        @sizes_hash[line.length] = [line]
-      end
+      # if @sizes_hash[line.length]
+      #   @sizes_hash[line.length].push(line)
+      # else
+      #   @sizes_hash[line.length] = [line]
+      # end
 
       @trie.add(line)  
          
     end
     file.close
 
-
+    counter = 0
+    percent_done = 10
+    p percent_done.to_s + " percent done"
     @hash.keys.each do |word|
+      counter +=1
       get_edges(word)
-
+      if counter % 25000 == 0
+        percent_done += 10
+        p percent_done.to_s + " percent done"
+      end
     end
 
   end

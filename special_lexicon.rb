@@ -8,14 +8,19 @@ class SpecialLexicon < Lexicon
     # FILL ME IN
     word = word.downcase
     sorted_word = word.chars.sort.join
-    return @sorted_hash[sorted_word].uniq
+    # return @sorted_hash[sorted_word].uniq
+    if @sorted_hash[sorted_word]
+      return @sorted_hash[sorted_word].uniq
+    else
+      return ["Sorry, we couldn't find any anagrams of " + word]
+    end
   end
 
 
   # Generates an array of all the words that have the given word as a prefix
   def get_prefixed_words(prefix)
-
-    prefix_copy = prefix[0...-1].downcase
+    prefix = prefix.downcase
+    prefix_copy = prefix[0...-1]
     answer = []
     current_node = @trie.root
 
@@ -34,8 +39,7 @@ class SpecialLexicon < Lexicon
     answer = dfs(current_node, prefix_copy)
     if @trie.is_word(prefix_copy + current_node.val)
       answer.push(prefix_copy + current_node.val)
-    else
-      p prefix_copy + current_node.val
+
     end
     return answer.flatten
   end
@@ -82,8 +86,7 @@ class SpecialLexicon < Lexicon
         queue.push(new_entry)
       end
     end
-    # p "queue is: ", queue
-    # return ['things']
+
 
     
     return ["Sorry, we couldn't find any path!  We need to learn more words... :-("]

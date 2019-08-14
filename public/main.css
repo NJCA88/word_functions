@@ -17,7 +17,7 @@ button {
   border-radius: 4px;
   cursor: pointer;
   padding: 8px;
-  filter: brightness(98%)
+  filter: brightness(95%)
 }
 button:hover{
   filter: brightness(100%)
