@@ -1,5 +1,5 @@
 require './lexicon'
-# require 'set'
+require 'set'
 
 class SpecialLexicon < Lexicon
 
@@ -59,51 +59,77 @@ class SpecialLexicon < Lexicon
 
 
   # Generates the shortest possible word ladder connecting the two words
+  # def ALTget_word_ladder(start_word, end_word)
+  #   # FILL ME IN
+  #   # BFS from the starting word with a queue or [current_word, path]
+  #   return ["Sorry, " + end_word + "isn't in our dictionary!"]  if !@hash[end_word]
+  #   return ["Sorry, " + start_word + "isn't in our dictionary!"] if !@hash[start_word] 
+  #   return ["Sorry, we need both words to be the same length"] if start_word.length != end_word.length
+  #   queue = [[start_word, [start_word]]]
+  #   word_list = @sizes_hash[start_word.length].dup
+  #   seen_set = Set.new
+  #   while (queue.length > 0)
+  #     current_data = queue.shift
+  #     cur_word = current_data[0]
+  #     cur_path = current_data[1]
+  #     if cur_word == 'cat'
+  #       p "cur_data with cat as word, is: ", current_data
+  #     end
+
+  #     word_list.each_with_index do |el, idx|
+  #       next if seen_set.include?(el)
+  #       if neighbors?(cur_word, el)
+  #         # its a valid neighbor
+  #         return (cur_path.dup.push(el)) if el == end_word
+  #         new_entry = [el, cur_path.dup.push(el)]
+  #         queue.push(new_entry)
+  #         # word_list.delete_at(idx)
+  #         seen_set.add(el)
+  #       else
+  #         next
+  #       end
+  #     #end the word_list loop
+  #   end
+  #   # p "queue is: ", queue
+  #   # return ['things']
+
+  #   end
+  #   return ["Sorry, we couldn't find any path!  We need to learn more words... :-("]
+  # end
   def get_word_ladder(start_word, end_word)
     # FILL ME IN
     # BFS from the starting word with a queue or [current_word, path]
     return ["Sorry, " + end_word + "isn't in our dictionary!"]  if !@hash[end_word]
     return ["Sorry, " + start_word + "isn't in our dictionary!"] if !@hash[start_word] 
     return ["Sorry, we need both words to be the same length"] if start_word.length != end_word.length
+
     queue = [[start_word, [start_word]]]
-    # visited = {start_word: true}
-    word_list = @sizes_hash[start_word.length].dup
-    # visted_words = {}
     while (queue.length > 0)
       current_data = queue.shift
-      # p "QUEUE IS: ", queue
       cur_word = current_data[0]
       cur_path = current_data[1]
-      if word_list.length % 10 == 0
-        p 'word lis: ', word_list.length
-      end
 
-      word_list.each_with_index do |el, idx|
-        # next if visted_words[el]
-        if neighbors?(cur_word, el)
-          # its a valid neighbor
-          return (cur_path.push(el)) if el == end_word
-          new_entry = [el, cur_path.dup.push(el)]
-          queue.push(new_entry)
-          word_list.delete_at(idx)
-          # visited_words[el] = true
-        else
-          next
-        end
-      end
 
+      @edges_hash[cur_word].each do |neighbor|
+        return ( cur_path.dup.push(neighbor) ) if neighbor == end_word
+        new_entry = [ neighbor, cur_path.dup.push(neighbor)]
+        queue.push(new_entry)
+      end
     end
+    # p "queue is: ", queue
+    # return ['things']
+
+    
     return ["Sorry, we couldn't find any path!  We need to learn more words... :-("]
   end
 
-  def neighbors?(word1, word2)
-    # compares 2 words to see if they are neighbors
-    #can only be neighbors if same length
-    (0.. word1.length - 1).each do |idx|
-      if (word1[0...idx] + '*' + word1[idx+1..-1]) == (word2[0...idx] + '*' + word2[idx+1..-1])
-        return true
-      end
-    end
-    return false
-  end
+  # def neighbors?(word1, word2)
+  #   # compares 2 words to see if they are neighbors
+  #   (0.. word1.length - 1).each do |idx|
+  #     if (word1[0...idx] + '*' + word1[idx+1..-1]) == (word2[0...idx] + '*' + word2[idx+1..-1])
+  #       return true
+  #     end
+  #   end
+  #   return false
+  # end
 end

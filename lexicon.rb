@@ -7,7 +7,9 @@ class Lexicon
     @hash = {}
     @sorted_hash={}
     @sizes_hash = {}
+    @edges_hash = {}
     @trie = Trie.new
+    @sizes_graphs = {}
     
 
     file = File.new('words.txt', 'r')
@@ -26,12 +28,46 @@ class Lexicon
       else
         @sizes_hash[line.length] = [line]
       end
+      # if !sizes_graphs[line.length]
+      #   sizes_graphs[line] = [GraphNode.new(line)]
 
       @trie.add(line)  
          
     end
     file.close
 
+    # @sizes_hash.each do |key, val|
+    #   p "size: ", key, "length ", val.length 
+    # end
+    counter = 0
+    @hash.keys.each do |word|
+      get_edges(word)
+      counter +=1
+      if counter % 5000 === 0
+        p "count: ", counter
+      end
+      # if counter === 1000
+      #   p "counter is at: ", counter
+      #   p @edges_hash
+      #   return
+
+      # end
+    end
+
+  end
+  def get_edges(word)
+    (0...word.length).each do |idx|
+      ("a".."z").each do |char|
+        temp = word[0...idx] + char + word[idx+1..-1]
+        if is_word?(temp) && temp != word
+          if  @edges_hash[word]
+            @edges_hash[word].push(temp)
+          else
+            @edges_hash[word] = [temp]
+          end
+        end
+      end
+    end
   end
 
   # Returns true if the given word is in the lexicon
@@ -39,7 +75,14 @@ class Lexicon
     return @hash.has_key?(word.downcase)
   end
 end
-
+ 
+# class GraphNode
+#   attr_accessor :neighbors
+#   def initialize(val)
+#     self.val = val
+#     self.neighbors = []
+#   end
+# end
 
 
   class Node
