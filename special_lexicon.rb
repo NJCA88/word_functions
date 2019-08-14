@@ -6,6 +6,7 @@ class SpecialLexicon < Lexicon
   # Generates an array of all the anagrams of the given word
   def get_anagrams(word)
     # FILL ME IN
+    word = word.downcase
     sorted_word = word.chars.sort.join
     return @sorted_hash[sorted_word].uniq
   end
@@ -14,7 +15,7 @@ class SpecialLexicon < Lexicon
   # Generates an array of all the words that have the given word as a prefix
   def get_prefixed_words(prefix)
 
-    prefix_copy = prefix[0...-1]
+    prefix_copy = prefix[0...-1].downcase
     answer = []
     current_node = @trie.root
 
@@ -59,48 +60,13 @@ class SpecialLexicon < Lexicon
 
 
   # Generates the shortest possible word ladder connecting the two words
-  # def ALTget_word_ladder(start_word, end_word)
-  #   # FILL ME IN
-  #   # BFS from the starting word with a queue or [current_word, path]
-  #   return ["Sorry, " + end_word + "isn't in our dictionary!"]  if !@hash[end_word]
-  #   return ["Sorry, " + start_word + "isn't in our dictionary!"] if !@hash[start_word] 
-  #   return ["Sorry, we need both words to be the same length"] if start_word.length != end_word.length
-  #   queue = [[start_word, [start_word]]]
-  #   word_list = @sizes_hash[start_word.length].dup
-  #   seen_set = Set.new
-  #   while (queue.length > 0)
-  #     current_data = queue.shift
-  #     cur_word = current_data[0]
-  #     cur_path = current_data[1]
-  #     if cur_word == 'cat'
-  #       p "cur_data with cat as word, is: ", current_data
-  #     end
-
-  #     word_list.each_with_index do |el, idx|
-  #       next if seen_set.include?(el)
-  #       if neighbors?(cur_word, el)
-  #         # its a valid neighbor
-  #         return (cur_path.dup.push(el)) if el == end_word
-  #         new_entry = [el, cur_path.dup.push(el)]
-  #         queue.push(new_entry)
-  #         # word_list.delete_at(idx)
-  #         seen_set.add(el)
-  #       else
-  #         next
-  #       end
-  #     #end the word_list loop
-  #   end
-  #   # p "queue is: ", queue
-  #   # return ['things']
-
-  #   end
-  #   return ["Sorry, we couldn't find any path!  We need to learn more words... :-("]
-  # end
   def get_word_ladder(start_word, end_word)
     # FILL ME IN
     # BFS from the starting word with a queue or [current_word, path]
-    return ["Sorry, " + end_word + "isn't in our dictionary!"]  if !@hash[end_word]
-    return ["Sorry, " + start_word + "isn't in our dictionary!"] if !@hash[start_word] 
+    start_word = start_word.downcase
+    end_word = end_word.downcase
+    return ["Sorry, " + end_word + " isn't in our dictionary!"]  if !@hash[end_word]
+    return ["Sorry, " + start_word + " isn't in our dictionary!"] if !@hash[start_word] 
     return ["Sorry, we need both words to be the same length"] if start_word.length != end_word.length
 
     queue = [[start_word, [start_word]]]
@@ -123,13 +89,4 @@ class SpecialLexicon < Lexicon
     return ["Sorry, we couldn't find any path!  We need to learn more words... :-("]
   end
 
-  # def neighbors?(word1, word2)
-  #   # compares 2 words to see if they are neighbors
-  #   (0.. word1.length - 1).each do |idx|
-  #     if (word1[0...idx] + '*' + word1[idx+1..-1]) == (word2[0...idx] + '*' + word2[idx+1..-1])
-  #       return true
-  #     end
-  #   end
-  #   return false
-  # end
 end

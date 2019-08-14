@@ -15,7 +15,7 @@ class Lexicon
     file = File.new('words.txt', 'r')
     while (line = file.gets)
       line.strip!.downcase!
-      @array.push line
+      # @array.push line
       @hash[line] = true
       sorted_string = line.chars.sort.join
       if @sorted_hash[sorted_string]
@@ -28,43 +28,31 @@ class Lexicon
       else
         @sizes_hash[line.length] = [line]
       end
-      # if !sizes_graphs[line.length]
-      #   sizes_graphs[line] = [GraphNode.new(line)]
 
       @trie.add(line)  
          
     end
     file.close
 
-    # @sizes_hash.each do |key, val|
-    #   p "size: ", key, "length ", val.length 
-    # end
-    counter = 0
-    @hash.keys.each do |word|
-      get_edges(word)
-      counter +=1
-      if counter % 5000 === 0
-        p "count: ", counter
-      end
-      # if counter === 1000
-      #   p "counter is at: ", counter
-      #   p @edges_hash
-      #   return
 
-      # end
-    end
+    counter = 0
+    # @hash.keys.each do |word|
+    #   get_edges(word)
+    #   counter +=1
+    #   if counter % 5000 === 0
+    #     p "count: ", counter
+    #   end
+    # end
 
   end
   def get_edges(word)
+    @edges_hash[word] = []
+
     (0...word.length).each do |idx|
       ("a".."z").each do |char|
         temp = word[0...idx] + char + word[idx+1..-1]
         if is_word?(temp) && temp != word
-          if  @edges_hash[word]
             @edges_hash[word].push(temp)
-          else
-            @edges_hash[word] = [temp]
-          end
         end
       end
     end
@@ -75,15 +63,6 @@ class Lexicon
     return @hash.has_key?(word.downcase)
   end
 end
- 
-# class GraphNode
-#   attr_accessor :neighbors
-#   def initialize(val)
-#     self.val = val
-#     self.neighbors = []
-#   end
-# end
-
 
   class Node
     attr_accessor :keys, :val,  :end

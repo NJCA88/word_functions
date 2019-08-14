@@ -8,6 +8,8 @@
     %script{:src => '/jquery.min.js'}
     %script{:src => "/main.js?z=#{Time.now.to_i}"}
     %link{:href => "/main.css?z=#{Time.now.to_i}", :type => 'text/css', :rel => 'stylesheet'}
+    %link{:href => "https://fonts.googleapis.com/css?family=Roboto:300,400i,500,700&display=swap", :type => 'text/css', :rel => "stylesheet" }
+
   %body
     %div
       %h1 Anagrams
@@ -34,14 +36,10 @@
       %button#word-ladder{href: '#'}
         Build Word Ladder
 
-    %div
-    %h1 New Anagrams
-    %label
-      start
-    %input#anagram-chars
-    %button#anagram-btn
-      Get new anagrams
+
 
     %div#results-container
-      %h2 These my resuls
+      %h2 Results
       %div#results
+        %p Nothing here yet, run a function and see what you get!
+      

@@ -13,7 +13,9 @@ end
 
 get '/anagrams/:word' do
   list = settings.lexicon.get_anagrams(params[:word])
-  haml :output, :locals => {:list => list}
+  # haml :output, :locals => {:list => list}
+  return list.to_json
+
 end
 get '/betteranagrams/:word' do
   p "trying..."
@@ -26,6 +28,11 @@ end
 get '/prefixed/:pre' do
   list = settings.lexicon.get_prefixed_words(params[:pre])
   haml :output, :locals => {:list => list}
+end
+get '/betterprefixes/:pre' do
+  list = settings.lexicon.get_prefixed_words(params[:pre])
+  # haml :output, :locals => {:list => list}
+  return list.to_json
 end
 
 get '/word_ladder/:start/:end' do
