@@ -1,3 +1,12 @@
+// All 3 of my functions operate in similar ways.
+// I have a results container at the bottom of my page, and when the
+// user clicks a button to get results, a javascript function is run, 
+// making an AJAX request.  If that request is succesful, we update
+// the sub heading of the results container, as well as the contents of
+// that container
+
+// We trim all inputs to remove whitespace, and if there is no input in the 
+// required field, we give the user a message but do not make an AJAX call.
 
 
 function init() {
@@ -32,6 +41,7 @@ function betterAnagrams(event){
     }
   });
 }
+
 function betterPrefixes(event){
   prefix = $('#prefix').val().trim();
   if (prefix.length === 0){

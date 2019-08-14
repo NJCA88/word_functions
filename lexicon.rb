@@ -10,6 +10,9 @@ class Lexicon
     # an array containing all neighbor words (words with only 1 character being different), this will be used for 
     # quick lookup time for word ladders
 
+    # Start up time on my machine averaged around 120 seconds.  While this is slower than I'd like, the very fast
+    # web request time made the slow start up acceptable in my opinion, though I am open to discussing other tradeoffs.
+
 
     @hash = {}
     @sorted_hash={}
