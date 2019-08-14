@@ -7,7 +7,7 @@ function init() {
 }
 
 function betterAnagrams(event){
-  word = $('#anagram-word').val();
+  word = $('#anagram-word').val().trim();
   if (word.length === 0) {
     $('#results').html("We're going to need some input");
     $('#results-subheading').html("Anagrams")
@@ -33,7 +33,7 @@ function betterAnagrams(event){
   });
 }
 function betterPrefixes(event){
-  prefix = $('#prefix').val();
+  prefix = $('#prefix').val().trim();
   if (prefix.length === 0){
     $('#results').html("We're going to need some input");
     $('#results-subheading').html("Prefixed Words")
@@ -58,8 +58,8 @@ function betterPrefixes(event){
 }
 
 function betterLadder(event) {
-  startWord = $('#start-word').val();
-  endWord = $('#end-word').val();
+  startWord = $('#start-word').val().trim();
+  endWord = $('#end-word').val().trim();
   if (startWord.length === 0 || endWord.length === 0) {
     $('#results').html("We need 2 words to find a path ");
     $('#results-subheading').html("Word Ladder")
