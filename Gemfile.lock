@@ -1,14 +1,13 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    byebug (11.0.1)
     daemons (1.2.4)
     eventmachine (1.2.7)
     haml (5.0.4)
       temple (>= 0.8.0)
       tilt
     mustermann (1.0.0)
-    rack (2.0.3)
+    rack (2.2.3)
     rack-protection (2.0.0)
       rack
     sinatra (2.0.0)
@@ -27,7 +26,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  byebug
   haml
   sinatra
   thin
